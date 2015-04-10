@@ -1,0 +1,19 @@
+web:
+    image: samos123/drupal
+    hostname: drupal
+    links:
+        - db:mysql
+    ports:
+        - "80:80"
+    volumes:
+        - /media/srv/drupal-twoway/www/html/sites:/var/www/html/sites
+        - /media/srv/drupal-twoway/www/private:/var/www/private
+    environment:
+        - UPLOAD_LIMIT=20M
+        - MEMORY_LIMIT=128M
+        
+db:
+    image: mysql
+    hostname: mysql
+    volumes:
+        - /media/srv/mysql-twoway:/var/lib/mysql
